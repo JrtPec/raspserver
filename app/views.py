@@ -130,3 +130,16 @@ def serverlogs():
 	return render_template(
 		'serverlogs.html',
 		title='Server Logs')
+
+@app.route('/users')
+@login_required
+@admin_required
+def users():
+	"""
+		List of all users
+	"""
+	users = User.query.all()
+	return render_template(
+		'users.html',
+		title='Users',
+		users=users)

@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block content %}
+	<header>Users</header>
+	<section>
+		<table>
+			<tr>
+				<th>Username</th>
+				<th>Role</th>
+			</tr>
+			{% for user in users %}
+			<tr>
+				<td>{{user.username}}</td>
+				<td>{{user.role}}</td>
+			</tr>
+			{% endfor %}
+		</table>
+	</section>
+{% endblock %}
