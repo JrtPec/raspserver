@@ -64,12 +64,15 @@ a:active {
 }
 
 .alert {
-	background-color: red;
+	border-style: dashed;
+	border-width: 1px;
+	background-color: #FE2E2E;
 	font-size: 1.2em;
 	font-weight: bold;
 	text-transform: uppercase;
 	text-align: center;
 	margin: 5%;
+	padding: 1%;
 }
 
 ul {
