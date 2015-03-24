@@ -36,6 +36,19 @@
 				{% endif %}
 			</ul>
 		</nav>
+		{% if g.user.is_admin() %}
+		<aside class="adminpanel">
+			<h3>Admin panel</h3>
+			<ul>
+				<li>
+					<a href="{{url_for('serverlogs')}}">Server Logs</a>
+				</li>
+				<li>
+					<a href="{{url_for('users')}}">Users</a>
+				</li>
+			</ul>
+		</aside>
+		{% endif %}
 		<main>	
 			{% include 'flash.html' %}
 			{% block content %}{% endblock %}
