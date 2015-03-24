@@ -6,6 +6,12 @@ def internal_error(error):
 	flash('404 - Page not found')
 	return redirect(url_for('index'))
 
+@app.errorhandler(500)
+def internal_error(error):
+	#db.session.rollback()
+	flash('500 - Server error')
+	return redirect(url_for('index'))
+
 @app.route('/')
 @app.route('/index')
 def index():
