@@ -8,15 +8,16 @@ body {
 }
 
 footer {
-	font-size: small;
+	font-size: 0.7em;
 	text-align: center;
 	background-color: #D8D8D8;
 }
 
 header {
 	margin: 5%;
-	font-size: larger;
+	font-size: 3em;
 	text-transform: uppercase;
+	font-weight: bold;
 }
 
 article {
@@ -26,6 +27,7 @@ article {
 nav {
 	text-transform: capitalize;
 	background-color: #D8D8D8;
+	font-size: 0.9em
 }
 
 menuitem {
