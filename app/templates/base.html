@@ -11,8 +11,16 @@
 	</head>
 	<body>
 		<nav>
-			<menuitem>Home</menuitem>
-			<menuitem>Server Logs</menuitem>
+			<menuitem>
+				<a href="{{url_for('index')}}">
+					Home
+				</a>
+			</menuitem>
+			<menuitem>
+				<a href="{{url_for('serverlogs')}}">
+					Server Logs
+				</a>
+			</menuitem>
 		</nav>
 		<main>	
 			{% include 'flash.html' %}

@@ -11,3 +11,8 @@ def internal_error(error):
 def index():
 	return render_template(
 		'index.html')
+
+@app.route('/serverlogs')
+def serverlogs():
+	return render_template(
+		'serverlogs.html')
