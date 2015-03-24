@@ -75,6 +75,17 @@ a:active {
 	padding: 1%;
 }
 
-ul {
+article ul {
 	list-style-type: circle;
+}
+
+nav ul {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+
+nav li {
+	display: inline;
+	margin-right: 2%;
 }
