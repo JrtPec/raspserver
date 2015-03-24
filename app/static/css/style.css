@@ -1,5 +1,5 @@
 html {
-	font-family: tahoma;
+	font-family: Tahoma, sans-serif;
 }
 
 body {
@@ -30,6 +30,10 @@ nav {
 
 menuitem {
 	margin-right: 1%;
+}
+
+a {
+	text-decoration: none;
 }
 
 .alert {
