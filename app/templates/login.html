@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block content %}
+	<header>Login</header>
+	<section>
+		<form action="" method="post" name="login">
+		{{form.hidden_tag()}}
+			<div class="{% if form.errors.post %}error{% endif %}">
+				<label for="username">Username:</label>
+				<div>
+					{{ form.username() }}
+					{% for error in form.errors.username %}
+						<span>[{{error}}]</span>
+					{% endfor %}
+				</div>
+				<label for"password">Password:</label>
+				<div>
+					{{ form.password() }}
+					{% for error in form.errors.password %}
+						<span>[{{error}}]</span>
+					{% endfor %}
+				</div>
+			</div>
+			<div>
+				<input type="submit" value="Log In">
+			</div>	
+		</form>
+	</section>
+	<section>
+		<a href="{{url_for('register')}}">Create new account</a>
+	</section>
+{% endblock %}
