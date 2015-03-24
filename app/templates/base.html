@@ -6,6 +6,8 @@
     	{% else %}
     		<title>Raspserver</title>
     	{% endif %}
+
+    	<link href="/static/css/style.css", rel="stylesheet">
 	</head>
 	<body>
 		<nav>
@@ -16,8 +18,8 @@
 			{% include 'flash.html' %}
 			{% block content %}{% endblock %}
 		</main>
-		<footer>
-			Raspserver by JrtPec
-		</footer>
 	</body>
+	<footer>
+		Raspserver by JrtPec
+	</footer>
 </html>
