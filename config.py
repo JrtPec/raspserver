@@ -9,3 +9,6 @@ else:
 	SQLALCHEMY_DATABASE_URI = os.environ['DATABASE_URL']
 SQLALCHEMY_MIGRATE_REPO = os.path.join(basedir, 'db_repository')
 SQLALCHEMY_RECORD_QUERIES = True
+
+adminfile = file(os.path.join(basedir, 'admins.txt'))
+ADMINS = adminfile.readlines()[0].rstrip()

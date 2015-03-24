@@ -1,8 +1,10 @@
 from app import app, lm, db
-from flask import render_template, flash, redirect, url_for, g, request
-from models import User
+from flask import render_template, flash, redirect, url_for, g, request, abort
+from models import User, ROLE_ADMIN
 from flask.ext.login import current_user, login_required, login_user, logout_user
 from forms import LoginForm, RegisterForm
+from functools import wraps
+from config import ADMINS
 
 @app.before_request
 def before_request():
@@ -12,7 +14,22 @@ def before_request():
 def load_user(id):
 	return User.query.get(id)
 
+def admin_required(f):
+	"""
+	Wrapper to allow certain pages only to admins
+	"""
+	@wraps(f)
+	def decorated_function(*args, **kwargs):
+		if g.user.role != ROLE_ADMIN:
+			abort(401)
+		return f(*args, **kwargs)
+	return decorated_function
+
 #HTTP ERRORS
+@app.errorhandler(401)
+def internal_error(error):
+	flash('401 - No permission')
+	return redirect(url_for('index'))
 @app.errorhandler(404)
 def internal_error(error):
 	flash('404 - Page not found')
@@ -76,6 +93,9 @@ def register():
 		pw_hash = User.get_pw_hash(form.password.data)
 
 		newuser = User(username=form.username.data,pw_hash=pw_hash)
+
+		if form.username.data in ADMINS:
+			newuser = User(username=form.username.data,pw_hash=pw_hash,role=ROLE_ADMIN)
 		
 		db.session.add(newuser)
 		db.session.commit()
@@ -102,6 +122,7 @@ def index():
 
 @app.route('/serverlogs')
 @login_required
+@admin_required
 def serverlogs():
 	"""
 		Download links for different log files
