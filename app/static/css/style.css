@@ -18,16 +18,19 @@ header {
 	font-size: 3em;
 	text-transform: uppercase;
 	font-weight: bold;
+	padding: 1%;
 }
 
 article {
 	margin: 5%;
+	padding: 1%;
 }
 
 nav {
 	text-transform: capitalize;
 	background-color: #D8D8D8;
-	font-size: 0.9em
+	font-size: 0.9em;
+	padding: 1%;
 }
 
 menuitem {
