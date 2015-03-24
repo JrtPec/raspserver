@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+	<head>
+    	{% if title %}
+    		<title>{{title}} - Raspserver</title>
+    	{% else %}
+    		<title>Raspserver</title>
+    	{% endif %}
+	</head>
+	<body>
+		<nav>
+			<menuitem>Home</menuitem>
+			<menuitem>Server Logs</menuitem>
+		</nav>
+		<main>	
+			{% include 'flash.html' %}
+			{% block content %}{% endblock %}
+		</main>
+		<footer>
+			Raspserver by JrtPec
+		</footer>
+	</body>
+</html>
