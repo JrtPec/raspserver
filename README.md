@@ -9,4 +9,4 @@ Add pull.sh to crontab to enable automatic updating from master:
 # Flask setup
 Run virtualenv.py: python virtualenv.py flask
 
-Requirements: pip install flask
+Requirements: flask/bin/pip install flask
