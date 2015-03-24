@@ -39,6 +39,7 @@
 				{% endif %}
 			</ul>
 		</nav>
+		{% include 'flash.html' %}
 		{% if g.user.is_authenticated() and g.user.is_admin() %}
 		<aside class="adminpanel">
 			<h3>Admin panel</h3>
@@ -54,7 +55,6 @@
 		</aside>
 		{% endif %}
 		<main>	
-			{% include 'flash.html' %}
 			{% block content %}{% endblock %}
 		</main>
 	</body>
