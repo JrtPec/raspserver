@@ -38,6 +38,33 @@ a {
 	text-decoration: none;
 }
 
+/* unvisited link */
+a:link {
+    color: #424242;
+}
+
+/* visited link */
+a:visited {
+    color: #424242;
+}
+
+/* mouse over link */
+a:hover {
+    color: #A4A4A4;
+    text-decoration: underline;
+}
+
+/* selected link */
+a:active {
+    color: #000000;
+    text-decoration: underline;
+}
+
 .alert {
-	color:red;
+	background-color: red;
+	font-size: 1.2em;
+	font-weight: bold;
+	text-transform: uppercase;
+	text-align: center;
+	margin: 5%;
 }
