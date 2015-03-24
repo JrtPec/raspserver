@@ -68,3 +68,7 @@ a:active {
 	text-align: center;
 	margin: 5%;
 }
+
+ul {
+	list-style-type: circle;
+}
