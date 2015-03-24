@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block content %}
+	<header>{{user.username}}</header>
+	<article>
+		<p>
+			Role: <em>{{user.role}}</em>
+		</p>
+	</article>
+{% endblock %}
+
+{% if g.user.is_admin() %}
+	{% block extra%}
+		<h4>Settings for {{user.username}}</h4>
+		<ul>
+			<li>
+				<form action="", method="post", name="toggle">
+					{{role_form.hidden_tag()}}
+					<input type="submit" value="Toggle role">
+				</form>
+			</li>
+		</ul>
+	{% endblock %}
+{% endif %}

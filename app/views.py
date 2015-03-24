@@ -1,8 +1,8 @@
 from app import app, lm, db
 from flask import render_template, flash, redirect, url_for, g, request, abort
-from models import User, ROLE_ADMIN
+from models import User, ROLE_ADMIN, ROLE_USER
 from flask.ext.login import current_user, login_required, login_user, logout_user
-from forms import LoginForm, RegisterForm
+from forms import LoginForm, RegisterForm, EmptyForm
 from functools import wraps
 from config import ADMINS
 
@@ -143,3 +143,41 @@ def users():
 		'users.html',
 		title='Users',
 		users=users)
+
+@app.route('/user/<id>', methods= ['GET','POST'])
+@login_required
+def user(id):
+	"""
+		Page with info about a user
+		Only visible for that user and admins
+	"""
+	#fetch user
+	user = User.query.get(id)
+
+	#check if user exists
+	if user is None:
+		abort(404)
+
+	#check permissions
+	if g.user == user or g.user.is_admin():
+
+		#create and handle form for role toggle
+		role_form = EmptyForm()
+		if role_form.validate_on_submit() and g.user != user:
+			if user.role == ROLE_USER:
+				user.role = ROLE_ADMIN
+			else:
+				user.role = ROLE_USER
+			db.session.add(user)
+			db.session.commit()
+		elif role_form.validate_on_submit():
+			flash('You cannot change your own role')
+
+		#render template
+		return render_template(
+			'user.html',
+			title=user.username,
+			user=user,
+			role_form=role_form)
+	else:
+		abort(401)

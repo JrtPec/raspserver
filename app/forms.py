@@ -49,3 +49,6 @@ class RegisterForm(Form):
 		#if Username is unique => validation True
 		else:
 			return True
+
+class EmptyForm(Form):
+	pass

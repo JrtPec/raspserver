@@ -12,14 +12,17 @@
 	<body>
 		<nav>
 			<ul>
-				{% if g.user.is_authenticated() %}
 				<li>
-					Welcome, {{g.user.username}}!
+					<em><b>RaspServer</b></em>
 				</li>
+				{% if g.user.is_authenticated() %}
 				<li>
 					<a href="{{url_for('index')}}">
 						Home
 					</a>
+				</li>
+				<li>
+					<a href="{{url_for('user',id=g.user.id)}}">{{g.user.username}}</a>
 				</li>
 				<li>
 					<a href="{{url_for('logout')}}">
@@ -36,7 +39,7 @@
 				{% endif %}
 			</ul>
 		</nav>
-		{% if g.user.is_admin() %}
+		{% if g.user.is_authenticated() and g.user.is_admin() %}
 		<aside class="adminpanel">
 			<h3>Admin panel</h3>
 			<ul>
@@ -47,6 +50,7 @@
 					<a href="{{url_for('users')}}">Users</a>
 				</li>
 			</ul>
+			{% block extra %}{% endblock %}
 		</aside>
 		{% endif %}
 		<main>	
