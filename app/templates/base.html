@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+    	{% if title %}
+    		<title>{{title}} - Raspserver</title>
+    	{% else %}
+    		<title>Raspserver</title>
+    	{% endif %}
+
+    	<link href="/static/css/style.css", rel="stylesheet">
+	</head>
+	<body>
+		<nav>
+			<ul>
+				<li>
+					<a href="{{url_for('index')}}">
+						Home
+					</a>
+				</li>
+				<li>
+					<a href="{{url_for('serverlogs')}}">
+						Server Logs
+					</a>
+				</li>
+			</ul>
+		</nav>
+		<main>	
+			{% include 'flash.html' %}
+			{% block content %}{% endblock %}
+		</main>
+	</body>
+	<footer>
+		Raspserver by JrtPec
+	</footer>
+</html>

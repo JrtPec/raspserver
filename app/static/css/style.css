@@ -1,0 +1,91 @@
+html {
+	font-family: Tahoma, sans-serif;
+}
+
+body {
+	margin-left: 2%;
+	margin-right: 2%;
+}
+
+footer {
+	font-size: 0.7em;
+	text-align: center;
+	background-color: #D8D8D8;
+}
+
+header {
+	margin: 5%;
+	font-size: 3em;
+	text-transform: uppercase;
+	font-weight: bold;
+	padding: 1%;
+}
+
+article {
+	margin: 5%;
+	padding: 1%;
+}
+
+nav {
+	text-transform: capitalize;
+	background-color: #D8D8D8;
+	font-size: 0.9em;
+	padding: 1%;
+}
+
+menuitem {
+	margin-right: 1%;
+}
+
+a {
+	text-decoration: none;
+}
+
+/* unvisited link */
+a:link {
+    color: #424242;
+}
+
+/* visited link */
+a:visited {
+    color: #424242;
+}
+
+/* mouse over link */
+a:hover {
+    color: #A4A4A4;
+    text-decoration: underline;
+}
+
+/* selected link */
+a:active {
+    color: #000000;
+    text-decoration: underline;
+}
+
+.alert {
+	border-style: dashed;
+	border-width: 1px;
+	background-color: #FE2E2E;
+	font-size: 1.2em;
+	font-weight: bold;
+	text-transform: uppercase;
+	text-align: center;
+	margin: 5%;
+	padding: 1%;
+}
+
+article ul {
+	list-style-type: circle;
+}
+
+nav ul {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+
+nav li {
+	display: inline;
+	margin-right: 2%;
+}
