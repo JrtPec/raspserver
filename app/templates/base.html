@@ -12,6 +12,10 @@
 	<body>
 		<nav>
 			<ul>
+				{% if g.user.is_authenticated() %}
+				<li>
+					Welcome, {{g.user.username}}!
+				</li>
 				<li>
 					<a href="{{url_for('index')}}">
 						Home
@@ -22,6 +26,19 @@
 						Server Logs
 					</a>
 				</li>
+				<li>
+					<a href="{{url_for('logout')}}">
+						Log Out
+					</a>
+				</li>
+				{% else %}
+				<li>
+					<a href="{{url_for('login')}}">Log In</a>
+				</li>
+				<li>
+					<a href="{{url_for('register')}}">Register</a>
+				</li>
+				{% endif %}
 			</ul>
 		</nav>
 		<main>	
