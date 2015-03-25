@@ -37,7 +37,7 @@ def internal_error(error):
 	return redirect(url_for('index'))
 @app.errorhandler(500)
 def internal_error(error):
-	#db.session.rollback()
+	db.session.rollback()
 	flash('500 - Server error')
 	return redirect(url_for('index'))
 
