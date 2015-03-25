@@ -5,6 +5,7 @@ from flask.ext.login import current_user, login_required, login_user, logout_use
 from forms import LoginForm, RegisterForm, EmptyForm
 from functools import wraps
 from config import ADMINS
+import datetime
 
 @app.before_request
 def before_request():
@@ -92,10 +93,10 @@ def register():
 		#generate hash for password
 		pw_hash = User.get_pw_hash(form.password.data)
 
-		newuser = User(username=form.username.data,pw_hash=pw_hash)
+		newuser = User(username=form.username.data,pw_hash=pw_hash,created=datetime.datetime.utcnow())
 
 		if form.username.data in ADMINS:
-			newuser = User(username=form.username.data,pw_hash=pw_hash,role=ROLE_ADMIN)
+			newuser.make_admin()
 		
 		db.session.add(newuser)
 		db.session.commit()
