@@ -2,11 +2,13 @@
 Raspberry Pi server project
 
 #RPi Setup
+There are two run files. run_dev.py enables debugging and runs only on the localhost. run_prod.py disables debugging and runs openly on the network.
+
 Run server automatically from cron:
 
 crontab -e
 
-add: @reboot raspserver/flask/bin/python raspserver/run.py
+add: @reboot raspserver/flask/bin/python raspserver/run_prod.py
 
 # Flask setup
 Run virtualenv.py: python virtualenv.py flask
