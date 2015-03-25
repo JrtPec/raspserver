@@ -1,5 +1,6 @@
 from flask.ext.wtf import Form
 from wtforms import TextField, PasswordField
+from wtforms.fields.html5 import DateField
 from wtforms.validators import DataRequired as Required
 from models import User
 
@@ -52,3 +53,6 @@ class RegisterForm(Form):
 
 class EmptyForm(Form):
 	pass
+
+class DateTimeForm(Form):
+	date = DateField('date', format='%Y-%m-%d')

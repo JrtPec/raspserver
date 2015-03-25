@@ -4,15 +4,19 @@
 	<section>
 		<table>
 			<tr>
+				<th>ID</th>
 				<th>Username</th>
 				<th>Role</th>
+				<th>Created</th>
 			</tr>
 			{% for user in users %}
 			<tr>
+				<td>{{user.id}}</td>
 				<td>
 					<a href="{{url_for('user',id=user.id)}}">{{user.username}}</a>
 				</td>
 				<td>{{user.role}}</td>
+				<td>{{user.created}}</td>
 			</tr>
 			{% endfor %}
 		</table>
