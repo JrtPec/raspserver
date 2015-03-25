@@ -182,3 +182,15 @@ def user(id):
 			role_form=role_form)
 	else:
 		abort(401)
+
+@app.route('/migration')
+@login_required
+@admin_required
+def migration():
+	"""
+		Page with helper scripts for database migrations
+	"""
+
+	return render_template(
+		'migration.html',
+		title='Migration')
