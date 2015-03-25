@@ -1,8 +1,8 @@
 from app import app, lm, db
 from flask import render_template, flash, redirect, url_for, g, request, abort
-from models import User, ROLE_ADMIN, ROLE_USER
+from models import *
 from flask.ext.login import current_user, login_required, login_user, logout_user
-from forms import LoginForm, RegisterForm, EmptyForm
+from forms import *
 from functools import wraps
 from config import ADMINS
 import datetime
@@ -183,14 +183,26 @@ def user(id):
 	else:
 		abort(401)
 
-@app.route('/migration')
+@app.route('/migration', methods=['GET','POST'])
 @login_required
 @admin_required
 def migration():
 	"""
 		Page with helper scripts for database migrations
 	"""
+	#init forms
+	created_form = DateTimeForm()
+
+	#handle forms
+	if created_form.validate_on_submit():
+		users = User.query.filter_by(created=None).all()
+		for user in users:
+			user.created = created_form.date.data
+			db.session.add(user)
+		db.session.commit()
+		flash(str(len(users))+' users updated')
 
 	return render_template(
 		'migration.html',
-		title='Migration')
+		title='Migration',
+		created_form=created_form)
