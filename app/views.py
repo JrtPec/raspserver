@@ -113,8 +113,15 @@ def register():
 
 @app.route('/')
 @app.route('/index')
-@login_required
 def index():
+	if g.user is not None and g.user.is_authenticated():
+		return redirect(url_for('main'))
+	else:
+		return redirect(url_for('login'))
+
+@app.route('/main')
+@login_required
+def main():
 	"""
 		MAIN PAGE
 	"""
