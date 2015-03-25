@@ -1,4 +1,8 @@
 *.log
 *.pyc
+*.db
 
 flask/
+db_repository/
+
+admins.txt

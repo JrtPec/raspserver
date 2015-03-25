@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+	<head>
+    	{% if title %}
+    		<title>{{title}} - Raspserver</title>
+    	{% else %}
+    		<title>Raspserver</title>
+    	{% endif %}
+
+    	<link href="/static/css/style.css", rel="stylesheet">
+	</head>
+	<body>
+		<nav>
+			<ul>
+				<li>
+					<em><b>RaspServer</b></em>
+				</li>
+				{% if g.user.is_authenticated() %}
+				<li>
+					<a href="{{url_for('index')}}">
+						Home
+					</a>
+				</li>
+				<li>
+					<a href="{{url_for('user',id=g.user.id)}}">{{g.user.username}}</a>
+				</li>
+				<li>
+					<a href="{{url_for('logout')}}">
+						Log Out
+					</a>
+				</li>
+				{% else %}
+				<li>
+					<a href="{{url_for('login')}}">Log In</a>
+				</li>
+				<li>
+					<a href="{{url_for('register')}}">Register</a>
+				</li>
+				{% endif %}
+			</ul>
+		</nav>
+		{% include 'flash.html' %}
+		{% if g.user.is_authenticated() and g.user.is_admin() %}
+		<aside class="adminpanel">
+			<h3>Admin panel</h3>
+			<ul>
+				<li>
+					<a href="{{url_for('serverlogs')}}">Server Logs</a>
+				</li>
+				<li>
+					<a href="{{url_for('users')}}">Users</a>
+				</li>
+			</ul>
+			{% block extra %}{% endblock %}
+		</aside>
+		{% endif %}
+		<main>	
+			{% block content %}{% endblock %}
+		</main>
+	</body>
+	<footer>
+		Raspserver by JrtPec
+	</footer>
+</html>

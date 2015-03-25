@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block content %}
+	<header>Register</header>
+	<section>
+		<form action="" method="post" name="register">
+		{{form.hidden_tag()}}
+			<div class="{% if form.errors.post %}error{% endif %}">
+				<label for="username">Username:</label>
+				<div>
+					{{ form.username() }}
+					{% for error in form.errors.username %}
+						<span>[{{error}}]</span>
+					{% endfor %}
+				</div>
+				<label for="password">Password:</label>
+				<div>
+					{{ form.password() }}
+					{% for error in form.errors.password %}
+						<span>[{{error}}]</span>
+					{% endfor %}
+				</div>
+				<label for="password2">Repeat Password</label>
+				<div>
+					{{ form.password2() }}
+					{% for error in form.errors.password2 %}
+						<span>[{{error}}]</span>
+					{% endfor %}
+				</div>
+			</div>
+			<div>
+				<input type="submit" value="Register">
+			</div>	
+		</form>
+	</section>
+{% endblock %}
