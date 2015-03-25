@@ -7,9 +7,10 @@ ROLE_ADMIN = 1
 class User(db.Model):
 	__tablename__ = 'user'
 	id = db.Column(db.Integer, primary_key = True)
-	username = db.Column(db.String(64))
-	pw_hash = db.Column(db.String(160))
+	username = db.Column(db.String(64), index = True, unique = True, nullable=False)
+	pw_hash = db.Column(db.String(160), nullable=False)
 	role = db.Column(db.Integer, default=ROLE_USER)
+	created = db.Column(db.DateTime)
 
 	@staticmethod
 	def get_pw_hash(password):
@@ -23,6 +24,9 @@ class User(db.Model):
 			return True
 		else:
 			return False
+
+	def make_admin(self):
+		self.role = ROLE_ADMIN
 
 	def is_authenticated(self):
 		return True

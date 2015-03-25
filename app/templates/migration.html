@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block content %}
+	<header>Migration</header>
+	<article>
+		This page contains some helper scripts for database migrations, eg. to help fill in data for existing entries when adding columns
+	</article>
+	<article>
+		<h3>User - created</h3>
+		<em>25/03/2015</em>
+		<p>
+			A new column 'created' was added to table user. It contains a DateTime when the account was created. Users that already existed before this migration don't have a value. Use this script to set a chosen date for all users that don't have a date 'created'
+		</p>
+		<form action="", method="post">
+			{{created_form.hidden_tag()}}
+			<label for "date">Date:</label>
+			<div>
+				{{ created_form.date() }}
+				{% for error in created_form.errors.date %}
+					<span>[{{error}}]</span>
+				{% endfor %}
+			</div>
+			<div>
+				<input type='submit' value="Submit">
+			</div>
+		</form>
+	</article>
+{% endblock %}
