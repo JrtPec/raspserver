@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% block content %}
+	<header>Trains</header>
+	<section>
+		<h3>New Entry</h3>
+		<form action="", method="post">
+			{{ form.hidden_tag() }}
+			<label for 'date'>Date:</label>
+			<div>
+				{{ form.date() }}
+				{% for error in form.errors.date %}
+					<span>[{{error}}]</span>
+				{% endfor %}
+			</div>
+			<label for 'origin'>From:</label>
+			<div>
+				{{ form.origin() }}
+				{% for error in form.errors.origin %}
+					<span>[{{error}}]</span>
+				{% endfor %}
+			</div>
+			<label for 'destination'>To:</label>
+			<div>
+				{{ form.destination() }}
+				{% for error in form.errors.destination %}
+					<span>[{{error}}]</span>
+				{% endfor %}
+			</div>
+			<label for 'delay'>Delay:</label>
+			<div>
+				{{ form.delay() }}
+				{% for error in form.errors.delay %}
+					<span>[{{error}}]</span>
+				{% endfor %}
+			</div>
+			<div>
+				<input type='submit' value='add'>
+			</div>
+		</form>
+	</section>
+	<section>
+		<h3>Last 5 trains</h3>
+		<table>
+			<tr>
+				<th>Date</th>
+				<th>From</th>
+				<th>To</th>
+				<th>Delay</th>
+			</tr>
+			{% for train in trains %}
+			<tr>
+				<td>{{train.date}}</td>
+				<td>{{train.origin}}</td>
+				<td>{{train.destination}}</td>
+				<td>{{train.delay}}</td>
+			</tr>
+			{% endfor %}
+		</table>
+	</section>
+	<section>
+		<h3>Statistics</h3>
+	</section>
+{% endblock %}

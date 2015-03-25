@@ -1,5 +1,5 @@
 from flask.ext.wtf import Form
-from wtforms import TextField, PasswordField
+from wtforms import TextField, PasswordField, IntegerField
 from wtforms.fields.html5 import DateField
 from wtforms.validators import DataRequired as Required
 from models import User
@@ -56,3 +56,9 @@ class EmptyForm(Form):
 
 class DateTimeForm(Form):
 	date = DateField('date', format='%Y-%m-%d')
+
+class TrainForm(Form):
+	date = DateField('date')
+	origin = TextField('origin')
+	destination = TextField('destination')
+	delay = IntegerField('delay',)

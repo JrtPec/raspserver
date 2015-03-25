@@ -93,7 +93,10 @@ def register():
 		#generate hash for password
 		pw_hash = User.get_pw_hash(form.password.data)
 
-		newuser = User(username=form.username.data,pw_hash=pw_hash,created=datetime.datetime.utcnow())
+		newuser = User(username=form.username.data,
+			pw_hash=pw_hash,
+			created=datetime.datetime.utcnow()
+			)
 
 		if form.username.data in ADMINS:
 			newuser.make_admin()
@@ -206,3 +209,31 @@ def migration():
 		'migration.html',
 		title='Migration',
 		created_form=created_form)
+
+@app.route('/trains', methods=['GET','POST'])
+@login_required
+def trains():
+	form = TrainForm()
+
+	if form.validate_on_submit():
+		newtrain = Train(
+			user_id=g.user.id,
+			created=datetime.datetime.utcnow(),
+			date=form.date.data,
+			origin=form.origin.data,
+			destination=form.destination.data,
+			delay=form.delay.data
+			)
+		db.session.add(newtrain)
+		db.session.commit()
+		flash('Train added')
+		return redirect(url_for('trains'))
+
+	trains = g.user.trains[::-1][:5]
+
+	return render_template(
+		'trains.html',
+		title='Trains',
+		form=form,
+		trains=trains
+		)

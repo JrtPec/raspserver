@@ -11,6 +11,7 @@ class User(db.Model):
 	pw_hash = db.Column(db.String(160), nullable=False)
 	role = db.Column(db.Integer, default=ROLE_USER)
 	created = db.Column(db.DateTime)
+	trains = db.relationship('Train', backref='user', lazy='dynamic', cascade="all,delete,delete-orphan")
 
 	@staticmethod
 	def get_pw_hash(password):
@@ -39,3 +40,13 @@ class User(db.Model):
 
 	def is_anonymous(self):
 		return False
+
+class Train(db.Model):
+	__tablename__ = 'train'
+	id = db.Column(db.Integer, primary_key = True)
+	user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+	created = db.Column(db.DateTime)
+	date = db.Column(db.Date)
+	origin = db.Column(db.String(64))
+	destination = db.Column(db.String(64))
+	delay = db.Column(db.Integer, default=0)
