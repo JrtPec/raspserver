@@ -1,6 +1,13 @@
 # Raspserver
 Raspberry Pi server project
 
+#RPi Setup
+Run server automatically from cron:
+
+crontab -e
+
+add: @reboot raspserver/flask/bin/python raspserver/run.py
+
 # Flask setup
 Run virtualenv.py: python virtualenv.py flask
 
